@@ -1,6 +1,8 @@
 import { formatAmount, formatDate } from "../../utils/format"
 import "./TransactionDetail.css"
-
+/*
+const [isLoading, setIsLoading] = useState(false)
+ const [isLoading, setIsLoading] = useState(false)*/
 export default function TransactionDetail() {
   const transactionId = null // replace this
   const transaction = {} // replace this
