@@ -18,6 +18,9 @@ export default function App() {
   const AddTransaction = (newTransaction) => {
     setTransactions(t => [...t, newTransaction])
   }
+  const handleOnInputChange = async (evt) => {
+    setInputValue();
+  };
 
   // Every time the site or inside the array rendered
   // It will run only once as there is nothing in the array
@@ -62,7 +65,7 @@ export default function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
+        <Navbar filterInputValue={filterInputValue} handleOnInputChange={handleOnInputChange} />
         <Routes>
           <Route path="/" element={<Home AddTransaction={AddTransaction} />}></Route>
           <Route

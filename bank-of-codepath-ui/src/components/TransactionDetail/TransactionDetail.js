@@ -4,22 +4,6 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 /*
-
- 
- useEffect(() => {
-   const func () = async () => {
-     setIsLoading(true)
-    const res = await axios.get(`http://localhost-3000/blog/${slug}`)
-    if (res?.data?.post)
-    setPost(res.data.post)
-     setIsLoading(false)
-   }
-   func()
- }, [slug])
- 
- const renderPostContent = () =>
- isLoading return error
- if (error) return error
  - Fragment tags as return only returns one thing<> </>*/
 export default function TransactionDetail() {
   const { transactionId } = useParams();
