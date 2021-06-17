@@ -15,7 +15,7 @@ export default function BankActivity({ transactions = [], transfers = [] }) {
         </div>
         {transactions.map((transaction) => (
           <div className="table-row" key={transaction.id}>
-            <Link to={`/bank/${transaction.id}`}>
+            <Link to={`/transactions/${transaction.id}`}>
             <span className="col x4">
               <Arrow amount={transaction.amount} />
               {transaction.description}

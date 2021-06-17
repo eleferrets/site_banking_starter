@@ -29,6 +29,7 @@ router.get("/transactions/:transactionId", async (req, res, next) => {
   try {
     const transactionId = req.params.transactionId;
     const transaction = await Bank.fetchTransactionById(transactionId);
+    console.log("tID", transactionId, "t", transaction)
     if (!transaction) {
       throw new NotFoundError("Transaction not found");
     }

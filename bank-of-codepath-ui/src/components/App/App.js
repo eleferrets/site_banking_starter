@@ -5,14 +5,19 @@ import Navbar from "../Navbar/Navbar";
 import Home from "../Home/Home";
 import "./App.css";
 import TransactionDetail from "../TransactionDetail/TransactionDetail";
+import AddTransaction from "../AddTransaction/AddTransaction";
 
 export default function App() {
   //const [posts, setPosts] = useState([])
   const [isFetching, setFetching] = useState(false);
-  const [error, setError] = useState(0);
-  const [filterInputValue, setInputValue] = useState(0);
+  const [error, setError] = useState(null);
+  const [filterInputValue, setInputValue] = useState(null);
   const [transactions, setTransactions] = useState([]);
   const [transfers, setTransfers] = useState([]);
+
+  const AddTransaction = (newTransaction) => {
+    setTransactions(t => [...t, newTransaction])
+  }
 
   // Every time the site or inside the array rendered
   // It will run only once as there is nothing in the array
@@ -36,14 +41,15 @@ export default function App() {
         const transferRes = await axios.get(
           "http://localhost:3001/bank/transfers"
         );
-        const transferData = transferRes.data;
-        const transfers = transferRes?.transferData?.transfers;
+        //const transferData = transferRes.data;
+        const transfers = transferRes?.data?.transfers;
         setTransfers(transfers);
         const transactionRes = await axios.get(
           "http://localhost:3001/bank/transactions"
         );
-        const transactionData = transactionRes.data;
-        const transactions = transactionRes?.transactionData?.transactions;
+       // const transactionData = transactionRes.data;
+        const transactions = transactionRes?.data?.transactions;
+        //console.log(transactions)
         setTransactions(transactions);
       } catch (err) {
         setError(err);
@@ -54,16 +60,18 @@ export default function App() {
     fetchTransactions();
   }, []);
   return (
-    <div className="App"> 
+    <div className="App">
       <BrowserRouter>
-      <Navbar />
-      <Routes>
-<Route path="/"  element={<Home />}></Route>
-<Route path="/bank/:transactionId" element={<TransactionDetail />}></Route>
-</Routes>
-{/* <Link to="/"></Link> */}
-</BrowserRouter>
-      
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home AddTransaction={AddTransaction} />}></Route>
+          <Route
+            path="/transactions/:transactionId"
+            element={<TransactionDetail />}
+          ></Route>
+        </Routes>
+        {/* <Link to="/"></Link> */}
+      </BrowserRouter>
     </div>
   );
 }

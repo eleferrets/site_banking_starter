@@ -5,7 +5,7 @@ import "./Home.css"
 export default function Home() {
   return (
     <div className="Home">
-      <AddTransaction />
+      <AddTransaction AddTransaction={AddTransaction}/>
       <BankActivity />
     </div>
   )
